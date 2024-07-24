@@ -1,0 +1,46 @@
+<html>
+<body>
+  <label>Insira </label>
+  <form>
+    <textarea></textarea>
+    <button type="submit">Enviar</button>
+</form>
+</body>
+<!--<script src="script.js"></script>-->
+<script type="importmap">
+
+  {
+    "imports":{
+      "@google/generative-ai": "https://esm.run/@google/generative-ai"
+    }
+  }
+</script>
+</html>
+<script type="module">
+      import { GoogleGenerativeAI } from "@google/generative-ai";
+
+      // Fetch your API_KEY
+      const API_KEY = "...";
+
+      // Access your API key (see "Set up your API key" above)
+      const genAI = new GoogleGenerativeAI(API_KEY);
+
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
+  </script>
+  
+  <html>
+    <script type="module">
+     async function run() {
+    const prompt = "Write a story about a AI and magic"
+
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const text = response.text();
+    
+    document.getElementById("resposta").value = text;
+    console.log(text);
+  }
+  
+  run();
+  </script>
+  <html>
